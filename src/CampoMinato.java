@@ -1,22 +1,18 @@
 import javax.swing.*;
-import javax.swing.event.MenuDragMouseEvent;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.Arrays;
-import java.util.EventListener;
 import java.util.Random;
 
 public class CampoMinato {
-    Random r = new Random();
-    //campi di classe
-    private JButton campo[][];
-    private boolean bombe[][];
-    private boolean visited[][];
     protected static int mine;
     protected static int visitedNumber;
+    Random r = new Random();
+    JDialog dialog;
+    //campi di classe
+    private JButton[][] campo;
+    private boolean[][] bombe;
+    private boolean[][] visited;
     private JFrame frame;
     private GridLayout layout;
-    JDialog dialog;
     private int lato;
 
     //costruttore
@@ -67,10 +63,10 @@ public class CampoMinato {
             }
         for (int i = 0; i < mine; i++) {
             boolean valid = false;
-            while (valid == false) {
+            while (!valid) {
                 int xr = r.nextInt(lato);
                 int yr = r.nextInt(lato);
-                if (bombe[xr][yr] == false) {
+                if (!bombe[xr][yr]) {
                     valid = true;
                     bombe[xr][yr] = true;
                     //campo[xr][yr].setBackground(Color.LIGHT_GRAY);
@@ -123,15 +119,4 @@ public class CampoMinato {
             }
         }
     }
-
-
-    public int getMine() {
-        return mine;
-    }
-
-    public void setMine(int mine) {
-        this.mine = mine;
-    }
-
-
 }
